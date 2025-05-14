@@ -22,7 +22,8 @@ GO
 CREATE TABLE Farmers(
 	FarmerID INT PRIMARY KEY IDENTITY(1,1),
 	Name VARCHAR(50) NOT NULL,
-	ProductName VARCHAR(50) NOT NULL
+	ProductName VARCHAR(50) NOT NULL,
+	DateOfBirth Date NOT NULL
 );
 
 GO
@@ -33,8 +34,8 @@ VALUES
 ('Milk', 'Dairy', '2025-05-15')
 GO
 
-INSERT INTO Farmers(Name, ProductName)
+INSERT INTO Farmers(Name, ProductName, DateOfBirth)
 VALUES
-('Pieter Du Preez',  'Cow'),
-('Johannes Koekemoer', 'Chicken')
+('Pieter Du Preez',  'Cow', '1968-02-14'),
+('Johannes Koekemoer', 'Chicken', '1970-06-27')
 GO

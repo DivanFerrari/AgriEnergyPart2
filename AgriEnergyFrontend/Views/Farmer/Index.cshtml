@@ -1,0 +1,39 @@
+﻿@using AgriEnergyFrontend.Model
+@model List<Farmer>
+
+<h2 class="text-center mt-4">Farmer Profiles</h2>
+
+<div class="text-center mt-4">
+    <a href="@Url.Action("Create", "Farmer")" class="btn btn-primary">Create new Farmer Profile</a>
+</div>
+
+<div class="text-center mt-4">
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to Home</a>
+</div>
+
+<div class="container mt-4">
+    <table class="table table-striped table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Farmer ID</th>
+                <th>Name</th>
+                <th>Product Name</th>
+                <th>Date of Birth</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var farmer in Model)
+            {
+                <tr>
+                    <td>@farmer.FarmerID</td>
+                    <td>@farmer.Name</td>
+                    <td>@farmer.ProductName</td>
+                    <td>@farmer.DateOfBirth.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+</div>
