@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  agri-db-service:
+    build:
+        context: ./AgriDB  # Adjusted build context
+        dockerfile: Dockerfile   # Dockerfile for the database
+    container_name: agri-db
+    environment:
+        ACCEPT_EULA: "Y"
+        MSSQL_SA_PASSWORD: "Password1!"
+        MSSQL_PID: "Express"
+    ports:
+        - "1433:1433"
+        - "1400:1433"  
+    volumes:
+        - db_data:/var/opt/mssql
+        - ./logs:/var/opt/mssql/log  # Optional: To access logs
+    restart: always  # Automatically restart on failure
+    networks:
+        - agri-network    
+
+  mvc-agrifrontend-service:
+    build:
+      context: .               # Root context to ensure file accessibility
+      dockerfile: ./AgriEnergyFrontend/Dockerfile  # Path to API Dockerfile
+    container_name: mvc-agrifrontend-service
+    environment:
+      SQL_CONNECTION_STRING: "Server=agri-db;Database=AgriEnergy;Trusted_Connection=false;MultipleActiveResultSets=true;Encrypt=false;user id=sa;password=Password1!"
+    ports:
+      - "80:8080"
+    networks:
+      - agri-network    
+  api-product-service:
+    build:
+      context: .               # Root context to ensure file accessibility
+      dockerfile: ./ProductAPI/Dockerfile  # Path to API Dockerfile
+    container_name: api-product-service
+    environment:
+      SQL_CONNECTION_STRING: "Server=agri-db;Database=AgriEnergy;Trusted_Connection=false;MultipleActiveResultSets=true;Encrypt=false;user id=sa;password=Password1!"
+    ports:
+      - "8080:8080"
+    networks:
+      - agri-network
+  api-service:
+    build:
+       context: .               # Root context to ensure file accessibility
+       dockerfile: ./FarmerAPI/Dockerfile  # Path to API Dockerfile
+    container_name: api-service
+    environment:
+      SQL_CONNECTION_STRING: "Server=agri-db;Database=AgriEnergy;Trusted_Connection=false;MultipleActiveResultSets=true;Encrypt=false;user id=sa;password=Password1!"
+    ports:
+      - "8081:8080"
+    networks:
+      - agri-network
+  
+
+networks:
+  agri-network:
+    driver: bridge
+
+volumes:
+    db_data:

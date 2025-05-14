@@ -1,5 +1,5 @@
-﻿using AgriFrontend.Model;
-using AgriFrontend.Services;
+﻿using AgriEnergyFrontend.Model;
+using AgriEnergyFrontend.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgriEnergyFrontend.Controllers
