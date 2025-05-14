@@ -1,4 +1,7 @@
 
+using FarmerAPI.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace FarmerAPI
 {
     public class Program
@@ -8,6 +11,9 @@ namespace FarmerAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            builder.Services.AddDbContext<FarmDbContext>(options => options.UseSqlServer(Environment.GetEnvironmentVariable
+           ("SQL_CONNECTION_STRING")));
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
