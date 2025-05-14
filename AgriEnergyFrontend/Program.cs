@@ -1,3 +1,5 @@
+using AgriEnergyFrontend.Services;
+
 namespace AgriEnergyFrontend
 {
     public class Program
@@ -8,6 +10,9 @@ namespace AgriEnergyFrontend
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddHttpClient();
+            builder.Services.AddHttpClient<ProductService>();
+            builder.Services.AddHttpClient<FarmerService>();
 
             var app = builder.Build();
 
