@@ -49,5 +49,5 @@ This web app was developed as a prototype for a proposed enterprise solution tha
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/agri-energy-connect.git
-cd agri-energy-connect
+git clone https://github.com/DivanFerrari/AgriEnergyPart2.git
+cd AgriEnergyPart2
