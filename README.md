@@ -8,7 +8,7 @@ Welcome to the **Agri-Energy Connect** prototype! This application is part of a 
 
 This web app was developed as a prototype for a proposed enterprise solution that integrates **green energy practices** with **agriculture**. It uses **two APIs** for managing:
 
-- 🥬 **Products** – Fully working: view and add products to a SQL Server database.
+- 🥬 **Products** – Fully working: view products that are stored to SQL Server database from web app (MVC).
 - 🧑‍🌾 **Farmers** – Not fully working: allows interface-based farmer creation, but **does not save** to the database.
 
 ---
@@ -49,5 +49,5 @@ This web app was developed as a prototype for a proposed enterprise solution tha
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/agri-energy-connect.git
-cd agri-energy-connect
+git clone https://github.com/DivanFerrari/AgriEnergyPart2.git
+cd AgriEnergyPart2
