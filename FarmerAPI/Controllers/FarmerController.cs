@@ -32,14 +32,30 @@ namespace FarmerAPI.Controllers
             return farmer;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Farmer>> Create(Farmer farmer)
-        {
-            _context.Farmers.Add(farmer);
-            await _context.SaveChangesAsync();
+        //𝐂𝐨𝐝𝐞𝐖𝐢𝐭𝐡𝐆𝐨𝐩𝐢 (2024). 🔄 Create and Consume Web API in ASP.NET Core MVC |
+        //Full CRUD Operations & API Consumption. [online] YouTube.Available at:
+        //https://www.youtube.com/watch?v=knTcwvFWOQM [Accessed 18 May 2025].
 
-            return CreatedAtAction(nameof(GetById), new { id = farmer.FarmerID }, farmer);
+
+        [HttpPost]
+        public IActionResult Post(Farmer model)
+        {
+            try
+            {
+                _context.Add(model);
+                _context.SaveChanges();
+                return Ok("Farmer Profile created.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
+
+        //𝐂𝐨𝐝𝐞𝐖𝐢𝐭𝐡𝐆𝐨𝐩𝐢 (2024). 🔄 Create and Consume Web API in ASP.NET Core MVC |
+        //Full CRUD Operations & API Consumption. [online] YouTube.Available at:
+        //https://www.youtube.com/watch?v=knTcwvFWOQM [Accessed 18 May 2025].
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, Farmer farmer)

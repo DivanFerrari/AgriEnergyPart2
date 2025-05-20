@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductAPI.Model;
 using ProductAPI.Models;
+using System;
+using static System.Net.WebRequestMethods;
 
 namespace ProductAPI.Controllers
 {
@@ -32,14 +35,30 @@ namespace ProductAPI.Controllers
             return product;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Product>> Create(Product product)
-        {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
+        //𝐂𝐨𝐝𝐞𝐖𝐢𝐭𝐡𝐆𝐨𝐩𝐢 (2024). 🔄 Create and Consume Web API in ASP.NET Core MVC |
+        //Full CRUD Operations & API Consumption. [online] YouTube.Available at:
+        //https://www.youtube.com/watch?v=knTcwvFWOQM [Accessed 18 May 2025].
 
-            return CreatedAtAction(nameof(GetById), new { id = product.ProductID }, product);
+        [HttpPost]
+        public IActionResult Post(Product model)
+        {
+            try
+            {
+                _context.Add(model);
+                _context.SaveChanges();
+                return Ok("Product created.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
+
+        //𝐂𝐨𝐝𝐞𝐖𝐢𝐭𝐡𝐆𝐨𝐩𝐢 (2024). 🔄 Create and Consume Web API in ASP.NET Core MVC |
+        //Full CRUD Operations & API Consumption. [online] YouTube.Available at:
+        //https://www.youtube.com/watch?v=knTcwvFWOQM [Accessed 18 May 2025].
+
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, Product product)
@@ -76,5 +95,6 @@ namespace ProductAPI.Controllers
 
             return NoContent();
         }
+
     }
 }

@@ -20,7 +20,7 @@ namespace AgriEnergyFrontend.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync("http://api-service:8081/api/farmer");
+                var response = await _httpClient.GetAsync("http://api-service:8080/api/farmer");
 
                 if (!response.IsSuccessStatusCode)
                 {
